@@ -1,27 +1,3 @@
-// var list =[
-//     {
-//         id: 1,
-//         label: "Food",
-//         statu: false
-//     },
-//     {
-//         id: 2,
-//         label: "Water",
-//         statu: false
-//     },
-//     {
-//         id: 3,
-//         label: "Code",
-//         statu: false
-//     },
-//     {
-//         id: 4,
-//         label: "Sleep",
-//         statu: false
-//     }
-// ];
-
-// localStorage.setItem("list",JSON.stringify(list));
 let list=[];
 const listParent=document.getElementById("task-list") 
 window.addEventListener("load",loadList);
@@ -60,6 +36,7 @@ function makeElement(element){
     del.innerHTML="X";
     del.setAttribute("class","delete");
     del.setAttribute("value",element.id);
+    del.setAttribute("onclick",`deleteElement(${element.id})`);
     spanElement.appendChild(checkBox);
     spanElement.appendChild(del);
     listItem.innerHTML=element.label;
@@ -120,6 +97,20 @@ function check(element){
             list[i].statu=!(list[i].statu);
         }
     }
+    localStorage.setItem("list",JSON.stringify(list));
+    listRefresh();
+}
+
+function deleteElement(data){
+    console.log(data);
+    list=list.filter(function(element){
+        if(element.id==data){
+            console.log(element.id);
+            return false;
+        }else{
+            return true;
+        }
+    }) 
     localStorage.setItem("list",JSON.stringify(list));
     listRefresh();
 }
