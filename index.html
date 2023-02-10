@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div>
+        <div id="main-container">
+            <div id="text-container">
+                <h1 id="text-container-heading">TEXT AREA</h1>
+                <textarea onkeyup="removeAllChar()" onkeydown="onKeyPress()" maxlength="100" name="text" id="text-box" cols="30" rows="20" placeholder="Enter Task Here"></textarea>
+            </div>
+            <div id="task-container">
+                <h1>TASK LIST</h1>
+                <p>Add task to your list typing to the right and pressing enter. You may then view pending tasks below.</p>
+                <ul id="task-list">
+                    <!-- <li class="checkedList">Test <span><input class="chbox" type="checkbox" ><button class="delete">X</button></span></li> -->
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="./javascriopt.js"></script>
+</html>
