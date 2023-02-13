@@ -23,6 +23,7 @@ body{
     border: solid #f0f0f0 1px;
     box-shadow: 3px 3px 5px #929191;
     height: 100px;
+    margin: 0 auto;
 }
 #text-container{
     flex: 1 1.2 50%;
@@ -63,4 +64,10 @@ li{
 }
 .checkedList{
     text-decoration-line: line-through;
+}
+
+@media screen and ( max-width : 561px) {
+    #main-container{
+        flex-direction: column;
+    }
 }
