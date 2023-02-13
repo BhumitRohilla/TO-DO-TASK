@@ -57,6 +57,7 @@ li{
     outline: none;
     border: none;
     background-color: #f0f0f0;
+    text-decoration-line: none !important;
 }
 
 .delete:hover{
