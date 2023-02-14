@@ -107,7 +107,7 @@ function removeAllChar(){
 
 function del(id){
     console.log(id);
-    list.filter(function(element){
+    list=list.filter(function(element){
         if(element.id == id){
             return false;
         }
@@ -115,6 +115,7 @@ function del(id){
     });
 
     document.getElementById(id).remove();
+    console.log(list);
     localStorage.setItem("list",JSON.stringify(list));
 }
 
