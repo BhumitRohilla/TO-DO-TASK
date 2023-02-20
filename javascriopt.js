@@ -68,7 +68,7 @@ function makeElement(element){
 
 
 function addElement(text){
-    text= text.trime();
+    text = text.trim();
     if(text == ""){
         return ;
     }
