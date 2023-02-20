@@ -37,8 +37,23 @@ function loadList(){
 function makeElement(element){
     let liToInsert = document.createElement("li");
     liToInsert.setAttribute("id",element.id);
-    liToInsert.innerHTML = element.label;
+    // liToInsert.innerHTML = element.label;
     
+    let divWithText = document.createElement("div");
+    divWithText.classList.add("text");
+    divWithText.innerHTML = element.label;
+
+    liToInsert.appendChild(divWithText);
+
+    let pencile = document.createElement("button");
+    let img=document.createElement("img");
+
+    
+    img.setAttribute("src","./Image/pen.png");
+    img.classList.add("pencile");
+    pencile.setAttribute("onclick",`rename(${element.id})`);
+    pencile.appendChild(img);
+
     let checkBox = document.createElement("input");
     checkBox.setAttribute("type","checkbox");
     checkBox.setAttribute("onclick",`checkBox(${element.id})`)
@@ -58,6 +73,7 @@ function makeElement(element){
     // liToInsert.appendChild(button);
 
     let divElement = document.createElement("div");
+    divElement.appendChild(pencile);
     divElement.appendChild(checkBox);
     divElement.appendChild(button);
     
@@ -136,4 +152,28 @@ function checkBox(id){
     }else{
         document.getElementById(id).classList.remove("checkedList");
     }
+}
+
+
+function rename(id){
+    console.log(id);
+    var val = prompt("Enter value");
+    val = val.trim();
+    if(val == ""){
+        return ;
+    }
+
+    console.log(val);
+
+    list.forEach(function(element){
+        if(element.id == id){
+            element.label = val;
+        }
+    });
+    let divToChange = document.getElementById(id);
+    divToChange = divToChange.getElementsByClassName("text")[0];
+    console.log(divToChange);
+    divToChange.innerText = val;
+    localStorage.setItem("list",JSON.stringify(list));
+    console.log(list);
 }
