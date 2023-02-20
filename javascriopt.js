@@ -68,6 +68,7 @@ function makeElement(element){
 
 
 function addElement(text){
+    text= text.trime();
     if(text == ""){
         return ;
     }
