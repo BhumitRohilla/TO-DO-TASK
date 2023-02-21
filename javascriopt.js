@@ -159,7 +159,9 @@ function rename(id){
     var liItem = document.getElementById(id);
     var textArea = liItem.getElementsByClassName("text")[0];
     console.log(textArea);
-    textArea.innerHTML = `<input id={${id+"input"}} type="text" onkeydown="renameInputFun(${id})">`;
+    var oldString = textArea.innerText;
+    console.log(oldString);
+    textArea.innerHTML = `<input id={${id+"input"}} type="text" onkeydown="renameInputFun(${id})" oldValue='${oldString}'>`;
     var inputBox = textArea.getElementsByTagName("input")[0];
     inputBox.focus();
     console.log(inputBox);
@@ -167,24 +169,29 @@ function rename(id){
 
 function renameInputFun(id){
     var key = window.event.key;
-    if(key == 'Enter'){
+    if(key=="Enter"){
         setName(id);
     }
 }
-
 
 function setName(id){
     var liItem = document.getElementById(id);
     var textArea = liItem.getElementsByClassName("text")[0];
     var newName = textArea.getElementsByTagName("input")[0];
-    newName = newName.value;
-    console.log(newName);
-    textArea.innerHTML = `${newName}`;
-
+    var text = newName.value;
+    text = text.trim();
+    if(text != ""){
+        console.log(text);
+    }else{
+        text = newName.getAttribute("oldValue");
+        console.log(text);    
+    }
+    
+    textArea.innerHTML = `${text}`;
 
     list.forEach(function(element){
         if(element.id ==id){
-            element.label = newName;
+            element.label = text;
         }
     })
 
