@@ -156,24 +156,38 @@ function checkBox(id){
 
 
 function rename(id){
-    console.log(id);
-    var val = prompt("Enter value");
-    val = val.trim();
-    if(val == ""){
-        return ;
-    }
+    var liItem = document.getElementById(id);
+    var textArea = liItem.getElementsByClassName("text")[0];
+    console.log(textArea);
+    textArea.innerHTML = `<input id={${id+"input"}} type="text" onkeydown="renameInputFun(${id})">`;
+    var inputBox = textArea.getElementsByTagName("input")[0];
+    inputBox.focus();
+    console.log(inputBox);
+}
 
-    console.log(val);
+function renameInputFun(id){
+    var key = window.event.key;
+    if(key == 'Enter'){
+        setName(id);
+    }
+}
+
+
+function setName(id){
+    var liItem = document.getElementById(id);
+    var textArea = liItem.getElementsByClassName("text")[0];
+    var newName = textArea.getElementsByTagName("input")[0];
+    newName = newName.value;
+    console.log(newName);
+    textArea.innerHTML = `${newName}`;
+
 
     list.forEach(function(element){
-        if(element.id == id){
-            element.label = val;
+        if(element.id ==id){
+            element.label = newName;
         }
-    });
-    let divToChange = document.getElementById(id);
-    divToChange = divToChange.getElementsByClassName("text")[0];
-    console.log(divToChange);
-    divToChange.innerText = val;
+    })
+
+
     localStorage.setItem("list",JSON.stringify(list));
-    console.log(list);
 }
