@@ -161,20 +161,21 @@ function rename(id){
     console.log(textArea);
     var oldString = textArea.innerText;
     console.log(oldString);
-    textArea.innerHTML = `<input id={${id+"input"}} type="text" onkeydown="renameInputFun(${id})" oldValue='${oldString}'>`;
+    textArea.innerHTML = `<input id={${id+"input"}} type="text" onkeydown='renameInputFun(${id},"${oldString}")'>`;
     var inputBox = textArea.getElementsByTagName("input")[0];
     inputBox.focus();
     console.log(inputBox);
 }
 
-function renameInputFun(id){
+function renameInputFun(id,oldString){
+    console.log(oldString);
     var key = window.event.key;
     if(key=="Enter"){
-        setName(id);
+        setName(id,oldString);
     }
 }
 
-function setName(id){
+function setName(id,oldString){
     var liItem = document.getElementById(id);
     var textArea = liItem.getElementsByClassName("text")[0];
     var newName = textArea.getElementsByTagName("input")[0];
@@ -183,7 +184,7 @@ function setName(id){
     if(text != ""){
         console.log(text);
     }else{
-        text = newName.getAttribute("oldValue");
+        text =  oldString;
         console.log(text);    
     }
     
