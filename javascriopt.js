@@ -94,6 +94,7 @@ function addElement(text){
     if(text == ""){
         console.log("visible");
         visiblePopUp();
+        popUp.focus();
         return ;
     }
     let obj={}; 
@@ -213,6 +214,7 @@ function visiblePopUp(){
     popUp.classList.remove("visibility-collapse");
     blurScreen.classList.remove("visibility-collapse");
     console.log(popUp.classList);
+    document.activeElement.blur();
 }
 
 function removePopUp(){
