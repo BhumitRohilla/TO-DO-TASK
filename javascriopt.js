@@ -19,6 +19,11 @@
 // localStorage.setItem("list",JSON.stringify(list));
 
 let list=[];
+let popUp = document.getElementById("StringEmptyPopup");
+let blurScreen = document.getElementById("blurFilm");
+let popUpButton = document.getElementById("popup-button");
+
+console.log(popUpButton);
 
 const listParent=document.getElementById("task-list") 
 window.addEventListener("load",loadList);
@@ -73,6 +78,7 @@ function makeElement(element){
     // liToInsert.appendChild(button);
 
     let divElement = document.createElement("div");
+    divElement.classList.add("buttonDivContainer");
     divElement.appendChild(pencile);
     divElement.appendChild(checkBox);
     divElement.appendChild(button);
@@ -86,6 +92,8 @@ function makeElement(element){
 function addElement(text){
     text = text.trim();
     if(text == ""){
+        console.log("visible");
+        visiblePopUp();
         return ;
     }
     let obj={}; 
@@ -198,4 +206,16 @@ function setName(id,oldString){
 
 
     localStorage.setItem("list",JSON.stringify(list));
+}
+
+
+function visiblePopUp(){
+    popUp.classList.remove("visibility-collapse");
+    blurScreen.classList.remove("visibility-collapse");
+    console.log(popUp.classList);
+}
+
+function removePopUp(){
+    popUp.classList.add("visibility-collapse");
+    blurScreen.classList.add("visibility-collapse");
 }
