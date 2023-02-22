@@ -99,7 +99,7 @@ li{
 }
 
 .buttonDivContainer{
-    flex: 0 0 77px;
+    flex: 0 0 90px;
     align-self: flex-end;
 }
 
@@ -145,9 +145,11 @@ li{
     visibility: collapse;
 }
 
-
-
-input:focus{
-    outline: none;
+.renameInput{
     width: 90%;
+}
+.renameInput:focus{
+    outline: none;
+    border: none;
+    background-color: #f0f0f0;
 }

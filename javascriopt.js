@@ -23,13 +23,13 @@ let popUp = document.getElementById("StringEmptyPopup");
 let blurScreen = document.getElementById("blurFilm");
 let popUpButton = document.getElementById("popup-button");
 
-console.log(popUpButton);
+// console.log(popUpButton);
 
 const listParent=document.getElementById("task-list") 
 window.addEventListener("load",loadList);
 function loadList(){
     list=JSON.parse(localStorage.getItem("list"));
-    console.log(list);
+    // console.log(list);
     if(list!=undefined){
         list.forEach(function(element){
             makeElement(element);
@@ -92,7 +92,7 @@ function makeElement(element){
 function addElement(text){
     text = text.trim();
     if(text == ""){
-        console.log("visible");
+        // console.log("visible");
         visiblePopUp();
         popUp.focus();
         return ;
@@ -118,7 +118,7 @@ function onKeyPress(){
     if(key == "Enter"){
         let textArea = document.getElementById("text-box");
         addElement(textArea.value);
-        console.log(textArea.value);
+        // console.log(textArea.value);
         textArea.value="";
     }
 }
@@ -132,7 +132,7 @@ function removeAllChar(){
 
 
 function del(id){
-    console.log(id);
+    // console.log(id);
     list=list.filter(function(element){
         if(element.id == id){
             return false;
@@ -141,7 +141,7 @@ function del(id){
     });
 
     document.getElementById(id).remove();
-    console.log(list);
+    // console.log(list);
     localStorage.setItem("list",JSON.stringify(list));
 }
 
@@ -151,7 +151,7 @@ function checkBox(id){
         if(element.id == id){
             status = element.status;
             element.status = !element.status;
-            console.log(element.status);
+            // console.log(element.status);
         }
     })
     localStorage.setItem("list",JSON.stringify(list));
@@ -167,17 +167,20 @@ function checkBox(id){
 function rename(id){
     var liItem = document.getElementById(id);
     var textArea = liItem.getElementsByClassName("text")[0];
-    console.log(textArea);
+    // console.log(textArea);
     var oldString = textArea.innerText;
-    console.log(oldString);
-    textArea.innerHTML = `<input id={${id+"input"}} type="text" onkeydown='renameInputFun(${id},"${oldString}")'>`;
+    // console.log(oldString);
+    textArea.innerHTML = `<input class="renameInput" id={${id+"input"}} type="text" onkeydown='renameInputFun(${id},"${oldString}")'>`;
     var inputBox = textArea.getElementsByTagName("input")[0];
     inputBox.focus();
-    console.log(inputBox);
+    // console.log(inputBox);
+    inputBox.addEventListener("focusout",function(){
+        setName(id,oldString);
+    });
 }
 
 function renameInputFun(id,oldString){
-    console.log(oldString);
+    // console.log(oldString);
     var key = window.event.key;
     if(key=="Enter"){
         setName(id,oldString);
@@ -191,10 +194,10 @@ function setName(id,oldString){
     var text = newName.value;
     text = text.trim();
     if(text != ""){
-        console.log(text);
+        // console.log(text);
     }else{
         text =  oldString;
-        console.log(text);    
+        // console.log(text);    
     }
     
     textArea.innerHTML = `${text}`;
@@ -213,7 +216,7 @@ function setName(id,oldString){
 function visiblePopUp(){
     popUp.classList.remove("visibility-collapse");
     blurScreen.classList.remove("visibility-collapse");
-    console.log(popUp.classList);
+    // console.log(popUp.classList);
     document.activeElement.blur();
 }
 
